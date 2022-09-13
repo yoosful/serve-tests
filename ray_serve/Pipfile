@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+requests = "*"
+fastapi = "*"
+uvicorn = {extras = ["standard"], version = "*"}
+ray = {extras = ["serve"], version = "*"}
+pyyaml = "==5.1"
+opencv-python = "*"
+transformers = "*"
+torch = "==1.12.1"
+torchvision = "==0.13.1"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
