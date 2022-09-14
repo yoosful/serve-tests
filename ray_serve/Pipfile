@@ -11,8 +11,9 @@ ray = {extras = ["serve"], version = "*"}
 pyyaml = "==5.1"
 opencv-python = "*"
 transformers = "*"
-torch = "==1.12.1"
-torchvision = "==0.13.1"
+torch = "*"
+torchvision = "*"
+setuptools = "*"
 
 [dev-packages]
 
