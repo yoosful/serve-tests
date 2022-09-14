@@ -31,10 +31,14 @@ predictor = DefaultPredictor(cfg)
 outputs = predictor(im)
 
 instances = outputs["instances"].to("cpu")
-# print(instances.pred_classes)
-# print(instances.to("cpu").pred_boxes)
-print(type(instances.pred_boxes))
-print ({
-    "pred_classes": instances.pred_classes.tolist(),
-    "pred_boxes": instances.pred_boxes.tensor.tolist(),
-})
+# print ({
+#     "pred_classes": instances.pred_classes.tolist(),
+#     "pred_boxes": instances.pred_boxes.tensor.tolist(),
+# })
+
+from detectron2.utils.visualizer import Visualizer
+from detectron2.data import MetadataCatalog
+
+v = Visualizer(im[:, :, ::-1], MetadataCatalog.get(cfg.DATASETS.TRAIN[0]), scale=1.2)
+out = v.draw_instance_predictions(instances)
+out.save(f"./output.jpg")
