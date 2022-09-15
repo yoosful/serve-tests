@@ -12,5 +12,11 @@ def send_query(data):
 with open ('./input.jpg', 'rb') as f:
     input_bytes = f.read()
 
-results = ray.get([send_query.remote(input_bytes) for i in range(BATCH_SIZE)])
+with open ('./tobacco.jpg', 'rb') as f:
+    tobacco_bytes = f.read()
+
+results = ray.get([
+    send_query.remote(input_bytes),
+    send_query.remote(tobacco_bytes)
+])
 print("Result returned!")
