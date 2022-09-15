@@ -7,8 +7,11 @@ name = "pypi"
 numpy = "*"
 ray = {extras = ["default"], version = "*"}
 opencv-python = "*"
+pillow = "*"
 
 [dev-packages]
+mypy = "*"
+flake8 = "*"
 
 [requires]
 python_version = "3.8"
