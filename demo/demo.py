@@ -10,6 +10,8 @@ def send_query(data):
     resp = requests.post("http://localhost:8000/", data=data)
     return resp.json()
 
+import time
+
 ###############################################################
 import streamlit as st
 
@@ -33,8 +35,11 @@ def run_inference(image_bytes:BytesIO):
 if uploaded_file is not None:
     st.image(uploaded_file, caption="Input Image", use_column_width=True)
 
+    start = time.time()
     bytes_data = uploaded_file.getvalue()
     inference_results = run_inference(bytes_data)
     for inference_result in inference_results:
         st.text(inference_result)
+    elapsed = time.time() - start
+    st.info(f'[INFO] total elapsed time: {elapsed}')
     # st.image(image, caption="Inference Result", use_column_width=True)
