@@ -24,7 +24,7 @@ from detectron2.data import MetadataCatalog
 import detectron2.data.transforms as T
 
 
-@serve.deployment(num_replicas=1, ray_actor_options={"num_cpus": 0.2, "num_gpus": 0.2})
+@serve.deployment(num_replicas=1, ray_actor_options={"num_cpus": 2, "num_gpus": 1})
 class D2Model:
     def __init__(self):
         cfg = get_cfg()
