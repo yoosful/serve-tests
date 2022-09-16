@@ -38,9 +38,10 @@ if n_files := len(uploaded_files):
     if n_files == 1:
         uploaded_file = uploaded_files[0]
 
-        start = time.time()
         bytes_data = uploaded_file.getvalue()
+        start = time.time()
         prediction = run_single_inference(bytes_data)
+        t_prediction = time.time() - start
 
         boxes = prediction['pred_boxes']
         classes = prediction['pred_classes']
@@ -57,12 +58,13 @@ if n_files := len(uploaded_files):
             st.image(output, caption="Prediction", use_column_width=True)
 
         elapsed = time.time() - start
-        st.text(f'[INFO] total elapsed time: {elapsed}')
+        st.text(f'[INFO] total elapsed time: {elapsed}. API call took: {t_prediction}.')
 
     else:
-        start = time.time()
         bytes_data_list = [uploaded_file.getvalue() for uploaded_file in uploaded_files]
+        start = time.time()
         predictions = run_parallel_inference(bytes_data_list)
+        t_prediction = time.time() - start
 
         for i, uploaded_file in enumerate(uploaded_files):
             prediction = predictions[i]
@@ -82,4 +84,4 @@ if n_files := len(uploaded_files):
                 st.image(output, caption="Prediction", use_column_width=True)
 
         elapsed = time.time() - start
-        st.text(f'[INFO] total elapsed time: {elapsed}')
+        st.text(f'[INFO] total elapsed time: {elapsed}. API call took: {t_prediction}.')

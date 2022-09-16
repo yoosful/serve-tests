@@ -70,10 +70,10 @@ class D2Model:
 
         instances_list = [output["instances"].to("cpu") for output in outputs]
 
-        for i,original_image in enumerate(original_images):
-            v = Visualizer(original_image[:, :, ::-1], MetadataCatalog.get(self.cfg.DATASETS.TRAIN[0]), scale=1.2)
-            out = v.draw_instance_predictions(instances_list[i])
-            out.save(f"./output_{now}_{i}.jpg")
+        # for i,original_image in enumerate(original_images):
+        #     v = Visualizer(original_image[:, :, ::-1], MetadataCatalog.get(self.cfg.DATASETS.TRAIN[0]), scale=1.2)
+        #     out = v.draw_instance_predictions(instances_list[i])
+        #     out.save(f"./output_{now}_{i}.jpg")
 
 
         return [
